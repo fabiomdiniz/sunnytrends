@@ -1,0 +1,21 @@
+application: sunnytrends
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /stylesheets
+  static_dir: stylesheets
+
+- url: /cron/update
+  script: cron.py
+  login: admin
+
+- url: /favicon.ico
+  static_files: favicon.ico
+  upload: favicon.ico
+
+- url: /.*
+  script: main.py
+  
+  

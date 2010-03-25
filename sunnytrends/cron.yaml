@@ -1,0 +1,4 @@
+cron:
+- description: Update BD
+  url: /cron/update
+  schedule: every mon,tue,wed,thu,fri of month 23:00

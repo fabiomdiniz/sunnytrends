@@ -1,0 +1,19 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>Cron's  Update BD</title>
+	</head>
+	<body>
+	<center>
+		{% for item in report.items %}
+      	        	{% if item.1 %}
+                		<b><font  color=#00ff00>{{ item.0 }} - OK</font></b>
+                		<br>
+  	         	{% else %}
+        	        	<b><font  color=#ff0000>{{ item.0 }} - ERRO</font></b>
+        	        	<br>
+		      	{% endif %}
+     		{% endfor %}		
+	</center>
+	</body>
+</html>
