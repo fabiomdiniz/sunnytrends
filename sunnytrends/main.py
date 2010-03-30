@@ -33,7 +33,7 @@ class MainPage(webapp.RequestHandler):
         _dowjones = dowjones_query.fetch(10)
         
         max_sp_query = max_sp.Max_sp.all().order('-date')
-        _max_sp = max_sp_query.fetch(10)
+        _max_sp = max_sp_query.fetch(11)
         
         nasdaq_query = nasdaq.Nasdaq.all().order('-date')
         _nasdaq = nasdaq_query.fetch(10)
@@ -57,8 +57,8 @@ class MainPage(webapp.RequestHandler):
           'nasdaq' : _nasdaq[0],
           'bovespa_list' : _bovespa,
           'dollar_list' : _dollar,
-          'dowjones_list' : _dowjones,
-          'max_sp_list' : _max_sp,
+          'dow_jones_list' : _dowjones,
+          'max_sp_list' : _max_sp[:-1],
           'nasdaq_list' : _nasdaq,
           'greetings': greetings,
           'url': url,

@@ -3,56 +3,61 @@
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
     <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
 
-    <script type="text/javascript" src="jquery-1.4.2.js"></script>
-    <script type="text/javascript" src="jquery.sparkline.js"></script>
+    <script type="text/javascript" src="./static/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="./static/jquery.sparkline.js"></script>
 
     <script type="text/javascript">
     $(function() {
-	
-        var dow_jones = [{&for m_dow_jones in dow_jones_list reversed%}{% if forloop.last %}{{m_dow_jones.value}}{%else%}{{m_dow_jones.value}},{% endif %}{% endfor %}];
-		$('#main_graph').sparkline(nasdaq, {height: '5.3em', fillColor: false, lineColor: 'yellow'});
+	    var dow_jones = [{%for m_dow_jones in dow_jones_list reversed%}{% if forloop.last %}{{m_dow_jones.value}}{%else%}{{m_dow_jones.value}},{% endif %}{% endfor %}];
+		$('.main_graph').sparkline(dow_jones, {width:'20em', height: '5.3em', fillColor: false, lineColor: 'yellow'});
 		
-        var bovespa = [{& for m_bovespa in bovespa_list reversed %}{% if forloop.last %}{{m_bovespa.value}}{%else%}{{m_bovespa.value}},{% endif %}{% endfor %}];
-		$('#main_graph').sparkline(bovespa, {composite: true, height: '5.3em', fillColor: false, lineColor: 'red'});
+        var bovespa = [{% for m_bovespa in bovespa_list reversed %}{% if forloop.last %}{{m_bovespa.value}}{%else%}{{m_bovespa.value}},{% endif %}{% endfor %}];
+		$('.main_graph').sparkline(bovespa, {composite: true, fillColor: false, lineColor: 'red'});
 
-        var dollar = [{& for m_dollar in dollar_list reversed %}{% if forloop.last %}{{m_dollar.value}}{%else%}{{m_dollar.value}},{% endif %}{% endfor %}];
-		$('#main_graph').sparkline(dollar, {composite: true, height: '5.3em', fillColor: false, lineColor: 'blue'});
+        var dollar = [{% for m_dollar in dollar_list reversed %}{% if forloop.last %}{{m_dollar.value}}{%else%}{{m_dollar.value}},{% endif %}{% endfor %}];
+		$('.main_graph').sparkline(dollar, {composite: true, fillColor: false, lineColor: 'blue'});
 		
-        var max_sp = [{& for m_max_sp in max_sp_list reversed %}{% if forloop.last %}{{m_max_sp.value}}{%else%}{{m_max_sp.value}},{% endif %}{% endfor %}];
-		$('#main_graph').sparkline(max_sp, {composite: true, height: '5.3em', fillColor: false, lineColor: 'green'});		
-				
+        var max_sp = [{% for m_max_sp in max_sp_list reversed %}{% if forloop.last %}{{m_max_sp.value}}{%else%}{{m_max_sp.value}},{% endif %}{% endfor %}];
+		$('.main_graph').sparkline(max_sp, {composite: true, fillColor: false, lineColor: 'green'});		
+
     });
     </script>
 
 
 </head>
   <body>
-  <font color=#ffffff>
-  <center>
-  	<b>{{ date }}</b>
-  	<br>
-  	<br>
-  	O valor do dólar é {{ dollar.value }}
-    <br>
-  	O índice Bovespa é {{ bovespa.value }}
-  	<br>
-  	O índice Dow Jones é {{ dowjones.value }}
-  	<br>
-  	O índice Nasdaq é {{ nasdaq.value }}
-  	<br>
-  	.......e a previsáo da máxima para São Paulo é de {{ max_sp.value }} graus
-    <br>
   
+  <center>
+    <font color="#ffffff"><b>{{ date }}</b>
+    <br>
+    <br>
+    O valor do dólar é {{ dollar.value }}
+    <br>
+    O índice Bovespa é {{ bovespa.value }}
+    <br>
+    O índice Dow Jones é {{ dowjones.value }}
+    <br>
+    O índice Nasdaq é {{ nasdaq.value }}
+    <br>
+    .......e a previsáo da máxima para São Paulo é de {{ max_sp.value }} graus
+    <br>
+      
     <br>
     <br>
     <br>
-    <p>
-    Tendências
+
+    Tendências (<font color="#ffff00">Dow Jones</font>,
+				<font color="#ff0000">Bovespa</font>,
+				<font color="#0000ff">Dollar</font>,                
+				<font color="#00ff00">Máxima para São Paulo</font>)
     <br>
-    <span class="main_graph">Now Loading...</span>.
-    </p>
-</center>
     <br>
+    <br>
+    <span class="main_graph">Now Loading...</span>
+
+	</font>
+  </center>
+	<font color="#ffffff">
     <br>
     <br>
     <br>
@@ -71,8 +76,7 @@
     <form action="/sign" method="post">
       <div><textarea name="content" rows="3" cols="60"></textarea></div>
       <div><input type="submit" value="Sign Guestbook"></div>
-    </form>
-
+        </form>
     <a href="{{ url }}">{{ url_linktext }}</a>
   </font>
   <br>
