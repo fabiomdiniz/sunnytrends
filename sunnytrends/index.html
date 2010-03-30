@@ -1,34 +1,59 @@
 <html>
   <head>
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
-  </head>
+    <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="jquery.sparkline.js"></script>
+
+    <script type="text/javascript">
+    $(function() {
+	
+        var dow_jones = [{&for m_dow_jones in dow_jones_list reversed%}{% if forloop.last %}{{m_dow_jones.value}}{%else%}{{m_dow_jones.value}},{% endif %}{% endfor %}];
+		$('#main_graph').sparkline(nasdaq, {height: '5.3em', fillColor: false, lineColor: 'yellow'});
+		
+        var bovespa = [{& for m_bovespa in bovespa_list reversed %}{% if forloop.last %}{{m_bovespa.value}}{%else%}{{m_bovespa.value}},{% endif %}{% endfor %}];
+		$('#main_graph').sparkline(bovespa, {composite: true, height: '5.3em', fillColor: false, lineColor: 'red'});
+
+        var dollar = [{& for m_dollar in dollar_list reversed %}{% if forloop.last %}{{m_dollar.value}}{%else%}{{m_dollar.value}},{% endif %}{% endfor %}];
+		$('#main_graph').sparkline(dollar, {composite: true, height: '5.3em', fillColor: false, lineColor: 'blue'});
+		
+        var max_sp = [{& for m_max_sp in max_sp_list reversed %}{% if forloop.last %}{{m_max_sp.value}}{%else%}{{m_max_sp.value}},{% endif %}{% endfor %}];
+		$('#main_graph').sparkline(max_sp, {composite: true, height: '5.3em', fillColor: false, lineColor: 'green'});		
+				
+    });
+    </script>
+
+
+</head>
   <body>
   <font color=#ffffff>
   <center>
   	<b>{{ date }}</b>
   	<br>
   	<br>
-  	{% for m_dollar in dollar %}
-  	O valor do dólar é {{ m_dollar.value }}
-  	{% endfor %}
+  	O valor do dólar é {{ dollar.value }}
+    <br>
+  	O índice Bovespa é {{ bovespa.value }}
   	<br>
-  	{% for m_bovespa in bovespa %}
-  	O índice Bovespa é {{ m_bovespa.value }}
-  	{% endfor %}
+  	O índice Dow Jones é {{ dowjones.value }}
   	<br>
-  	{% for m_dowjones in dowjones %}
-  	O índice Dow Jones é {{ m_dowjones.value }}
-  	{% endfor %}
+  	O índice Nasdaq é {{ nasdaq.value }}
   	<br>
-  	{% for m_nasdaq in nasdaq %}
-  	O índice Nasdaq é {{ m_nasdaq.value }}
-  	{% endfor %}
-  	<br>
-  	{% for m_max_sp in max_sp %}
-  	.......e a previsáo da máxima para São Paulo é de {{ m_max_sp.value }} graus
-       {% endfor %}
-       <br>
-  </center>
+  	.......e a previsáo da máxima para São Paulo é de {{ max_sp.value }} graus
+    <br>
+  
+    <br>
+    <br>
+    <br>
+    <p>
+    Tendências
+    <br>
+    <span class="main_graph">Now Loading...</span>.
+    </p>
+</center>
+    <br>
+    <br>
     <br>
     <br>
     <br>

@@ -24,19 +24,19 @@ class Greeting(db.Model):
 class MainPage(webapp.RequestHandler):
     def get(self):
         bovespa_query = bovespa.Bovespa.all().order('-date')
-        _bovespa = bovespa_query.fetch(1)
+        _bovespa = bovespa_query.fetch(10)
         
         dollar_query = dollar.Dollar.all().order('-date')
-        _dollar = dollar_query.fetch(1)
+        _dollar = dollar_query.fetch(10)
         
         dowjones_query = dowjones.Dowjones.all().order('-date')
-        _dowjones = dowjones_query.fetch(1)
+        _dowjones = dowjones_query.fetch(10)
         
         max_sp_query = max_sp.Max_sp.all().order('-date')
-        _max_sp = max_sp_query.fetch(1)
+        _max_sp = max_sp_query.fetch(10)
         
         nasdaq_query = nasdaq.Nasdaq.all().order('-date')
-        _nasdaq = nasdaq_query.fetch(1)
+        _nasdaq = nasdaq_query.fetch(10)
     
         greetings_query = Greeting.all().order('-date')
         greetings = greetings_query.fetch(10)
@@ -50,11 +50,16 @@ class MainPage(webapp.RequestHandler):
 
         template_values = {
           'date' : strftime('Hoje é o dia %d do mês %m do ano de %Y'),
-          'bovespa' : _bovespa,
-          'dollar' : _dollar,
-          'dowjones' : _dowjones,
-          'max_sp' : _max_sp,
-          'nasdaq' : _nasdaq,
+          'bovespa' : _bovespa[0],
+          'dollar' : _dollar[0],
+          'dowjones' : _dowjones[0],
+          'max_sp' : _max_sp[0],
+          'nasdaq' : _nasdaq[0],
+          'bovespa_list' : _bovespa,
+          'dollar_list' : _dollar,
+          'dowjones_list' : _dowjones,
+          'max_sp_list' : _max_sp,
+          'nasdaq_list' : _nasdaq,
           'greetings': greetings,
           'url': url,
           'url_linktext': url_linktext,
