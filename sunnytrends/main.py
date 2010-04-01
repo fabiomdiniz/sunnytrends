@@ -16,11 +16,6 @@ import dowjones
 import max_sp
 import nasdaq
 
-class Greeting(db.Model):
-    author = db.UserProperty()
-    content = db.StringProperty(multiline=True)
-    date = db.DateTimeProperty(auto_now_add=True)
-
 class MainPage(webapp.RequestHandler):
     def get(self):
         bovespa_query = bovespa.Bovespa.all().order('-date')
@@ -38,16 +33,6 @@ class MainPage(webapp.RequestHandler):
         nasdaq_query = nasdaq.Nasdaq.all().order('-date')
         _nasdaq = nasdaq_query.fetch(10)
     
-        greetings_query = Greeting.all().order('-date')
-        greetings = greetings_query.fetch(10)
-
-        if users.get_current_user():
-            url = users.create_logout_url(self.request.uri)
-            url_linktext = 'Logout'
-        else:
-            url = users.create_login_url(self.request.uri)
-            url_linktext = 'Login'
-
         template_values = {
           'date' : strftime('Hoje é o dia %d do mês %m do ano de %Y'),
           'bovespa' : _bovespa[0],
@@ -60,24 +45,10 @@ class MainPage(webapp.RequestHandler):
           'dow_jones_list' : _dowjones,
           'max_sp_list' : _max_sp[:-1],
           'nasdaq_list' : _nasdaq,
-          'greetings': greetings,
-          'url': url,
-          'url_linktext': url_linktext,
           }
 
         path = os.path.join(os.path.dirname(__file__), 'index.html')
         self.response.out.write(template.render(path, template_values))
-
-class Guestbook(webapp.RequestHandler):
-    def post(self):
-        greeting = Greeting()
-
-        if users.get_current_user():
-            greeting.author = users.get_current_user()
-
-        greeting.content = self.request.get('content')
-        greeting.put()
-        self.redirect('/')
 
 class Cron(webapp.RequestHandler):
     def get(self):
@@ -89,7 +60,6 @@ class Cron(webapp.RequestHandler):
 
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
-                                      ('/sign', Guestbook),
                                       ('/cron/update', Cron)],
                                      debug=True)
 

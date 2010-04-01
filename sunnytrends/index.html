@@ -1,5 +1,6 @@
 <html>
   <head>
+<title> Sunny Trends </title>
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
     <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
 
@@ -46,10 +47,10 @@
     <br>
     <br>
 
-    Tendências (<font color="#ffff00">Dow Jones</font>,
-				<font color="#ff0000">Bovespa</font>,
-				<font color="#0000ff">Dollar</font>,                
-				<font color="#00ff00">Máxima para São Paulo</font>)
+    Tendências<br> (<font color="#ffff00">Dow Jones</font>,
+				    <font color="#ff0000">Bovespa</font>,
+				    <font color="#0000ff">Dollar</font>,                
+				    <font color="#006600">Máxima para São Paulo</font>)
     <br>
     <br>
     <br>
@@ -63,24 +64,18 @@
     <br>
     <br>
     <br>
-    Deixe um recado para <a href="http://www.flavors.me/fabiomdiniz">mim</a> !
-    {% for greeting in greetings %}
-      {% if greeting.author %}
-        <b>{{ greeting.author.nickname }}</b> wrote:
-      {% else %}
-       An anonymous person wrote:
-      {% endif %}
-      <blockquote>{{ greeting.content|escape }}</blockquote>
-    {% endfor %}
-
-    <form action="/sign" method="post">
-      <div><textarea name="content" rows="3" cols="60"></textarea></div>
-      <div><input type="submit" value="Sign Guestbook"></div>
-        </form>
-    <a href="{{ url }}">{{ url_linktext }}</a>
+	  
   </font>
-  <br>
-  <img align="right" src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" />
-  <img align="right" src="http://www.python.org/community/logos/python-powered-w-100x40.png" alt="Python Powered" />
-  </body>
+  <div align="right"><a href="http://www.flavors.me/fabiomdiniz">Sobre o autor</a></div>
+    <p>
+    <a href="http://www.python.org/">
+    <img align="right" src="http://www.python.org/community/logos/python-powered-w-100x40.png" alt="Python Powered" />     
+    </a></p>
+    <br>
+    <p><br>
+    <a href="http://code.google.com/appengine/">
+    <img align="right"src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" />
+    </a></p>
+
+</body>
 </html>
