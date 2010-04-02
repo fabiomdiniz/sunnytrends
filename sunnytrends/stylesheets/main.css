@@ -1,5 +1,6 @@
 body {
 	font-family: Verdana, Helvetica, sans-serif;
-	background-color: #000000;
-	background-image:url(http://dygz78ls5cy51.cloudfront.net/7285f690b0c54d5bb4d93739a69ed7cd);
+	background-color: #FFFFFF;
+	background-image:url(../static/back.png);
+	background-repeat: repeat;
 }

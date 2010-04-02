@@ -25,40 +25,46 @@
     </script>
 
 
+    <style type="text/css">
+<!--
+#apDiv1 {
+	position:absolute;
+	left:500px;
+	top:15px;
+	width:624px;
+	height:295px;
+	z-index:1;
+}
+-->
+    </style>
 </head>
   <body>
   
-  <center>
-    <font color="#ffffff"><b>{{ date }}</b>
-    <br>
-    <br>
-    O valor do dólar é {{ dollar.value }}
-    <br>
-    O índice Bovespa é {{ bovespa.value }}
-    <br>
-    O índice Dow Jones é {{ dowjones.value }}
-    <br>
-    O índice Nasdaq é {{ nasdaq.value }}
-    <br>
-    .......e a previsáo da máxima para São Paulo é de {{ max_sp.value }} graus
-    <br>
-      
-    <br>
-    <br>
-    <br>
-
-    Tendências<br> (<font color="#ffff00">Dow Jones</font>,
-				    <font color="#ff0000">Bovespa</font>,
-				    <font color="#0000ff">Dollar</font>,                
-				    <font color="#006600">Máxima para São Paulo</font>)
-    <br>
-    <br>
-    <br>
-    <span class="main_graph">Now Loading...</span>
-
-	</font>
+  
+    <div id="apDiv1">
+      <div align="center"><b>{{ date }}</b> <br>
+        <br>
+O valor do dólar é {{ dollar.value }} <br>
+O índice Bovespa é {{ bovespa.value }} <br>
+O índice Dow Jones é {{ dowjones.value }} <br>
+O índice Nasdaq é {{ nasdaq.value }} <br>
+.......e a previsáo da máxima para São Paulo é de {{ max_sp.value }} graus <br>
+<br>
+<br>
+<br>
+Tendências<br>
+<strong>(<font color="#ffff00">Dow Jones</font>, <font color="#ff0000">Bovespa</font>, <font color="#0000ff">Dollar</font>, <font color="#006600">Máxima para São Paulo</font>) </strong><br>
+<br>
+<br>
+<span class="main_graph">Now Loading...</span> </font> </div>
+  </div>
+    <div class="image">
+      <p><img src="static/logo.png" width="486" height="315" align="absbottom"><br>
+    </p>
+    </div>
+    <center>
+      <p>&nbsp;</p>
   </center>
-	<font color="#ffffff">
     <br>
     <br>
     <br>
@@ -76,6 +82,16 @@
     <a href="http://code.google.com/appengine/">
     <img align="right"src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" />
     </a></p>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-15624284-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
 
 </body>
 </html>
