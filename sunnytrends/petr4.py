@@ -5,12 +5,12 @@ from time import strftime
 import urllib
 from deps.BeautifulSoup import BeautifulSoup
 
-class Bovespa(db.Model):
+class Petr4(db.Model):
   value = db.FloatProperty()
   date = db.StringProperty()
 
 def get():
-    html = urllib.urlopen('http://br.finance.yahoo.com/q?s=^BVSP')
+    html = urllib.urlopen('http://br.finance.yahoo.com/q?s=petr4.SA')
     soup = BeautifulSoup(html)
-    return [float(soup.big.b.string.replace(',', '')), strftime('%Y%m%d')]
+    return [float(soup.big.b.string[:-3].replace(',', '')), strftime('%Y%m%d')]
 

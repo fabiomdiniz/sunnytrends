@@ -13,6 +13,7 @@ import dollar
 import dowjones
 import max_sp
 import nasdaq
+import petr4
 
 def update():
     report = {}
@@ -57,6 +58,14 @@ def update():
     except:
         report['nasdaq'] = False
 
+    _petr4 = petr4.Petr4()
+    try:
+        _petr4.value, _petr4.date = petr4.get()
+        _petr4.put()
+        report['petr4'] = True
+    except:
+        report['petr4'] = False
+    
     return report
 
 class Cron(webapp.RequestHandler):

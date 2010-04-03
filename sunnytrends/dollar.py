@@ -4,7 +4,7 @@ from google.appengine.ext import db
 from time import strftime
 import urllib
 import os
-from BeautifulSoup import BeautifulSoup
+from deps.BeautifulSoup import BeautifulSoup
 
 class Dollar(db.Model):
   value = db.FloatProperty()

@@ -3,7 +3,7 @@
 from google.appengine.ext import db
 from time import strftime
 import urllib
-from BeautifulSoup import BeautifulSoup
+from deps.BeautifulSoup import BeautifulSoup
 
 class Dowjones(db.Model):
   value = db.FloatProperty()

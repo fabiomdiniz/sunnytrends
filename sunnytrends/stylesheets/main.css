@@ -4,3 +4,11 @@ body {
 	background-image:url(../static/back.png);
 	background-repeat: repeat;
 }
+#apDiv1 {
+	position:absolute;
+	left:500px;
+	top:15px;
+	width:624px;
+	height:295px;
+	z-index:1;
+}
