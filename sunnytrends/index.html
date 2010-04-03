@@ -1,6 +1,6 @@
 <html>
-  <head>
-<title> Sunny Trends </title>
+<head>
+    <title> Sunny Trends </title>
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
     <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
 
@@ -24,60 +24,85 @@
     });
     </script>
 </head>
-  <body>
-  
-  
-    <div id="apDiv1">
-      <div align="center"><b>{{ date }}</b> <br>
+<body>
+    <div id="apDiv1" align="center">
+        <b>{{ date }}</b>
         <br>
-O valor do dólar é {{ dollar.value }} <br>
-O índice Bovespa é {{ bovespa.value }} <br>
-O índice Dow Jones é {{ dowjones.value }} <br>
-O índice Nasdaq é {{ nasdaq.value }} <br>
-.......e a previsáo da máxima para São Paulo é de {{ max_sp.value }} graus <br>
-<br>
-<br>
-<br>
-Tendências<br>
-<strong>(<font color="#ffff00">Dow Jones</font>, <font color="#ff0000">Bovespa</font>, <font color="#0000ff">Dollar</font>, <font color="#006600">Máxima para São Paulo</font>) </strong><br>
-<br>
-<br>
-<span class="main_graph">Now Loading...</span> </font> </div>
-  </div>
-    <div class="image">
-      <p><img src="static/logo.png" width="486" height="315" align="absbottom"><br>
-    </p>
+        <br>
+        USD-BRL exchange rate : {{ dollar|floatformat:2 }}
+        <br>
+        Bovespa index : {{ bovespa }}
+        <br>
+        Dow Jones index : {{ dowjones }} 
+        <br>
+        Nasdaq index : {{ nasdaq }} 
+        <br>
+        .......and São Paulo's high forecast: {{ max_sp }} °C
+        <br>
+        <br>
+        <br>
+        <br>
+        Trends
+        <br>
+        <strong>
+            (<font color="#ffff00">Dow Jones index</font>, 
+             <font color="#ff0000">Bovespa index</font>, 
+             <font color="#0000ff">Dollar index</font>, 
+             <font color="#006600">São Paulo's high forecast</font>) 
+        </strong>
+        <br>
+        <br>
+        <br>
+        <span class="main_graph">Now Loading...</span> 
+        <br>
+        <br>
+        <br>
+        The highest linear correlation today was between {{ max_linear_correl.0 }} and {{ max_linear_correl.1 }}
+        <br>
+        (<a href="http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient">Pearson coefficient</a>: {{ max_linear_correl.2|floatformat:2 }})
+        <br>
+        The highest ranked correlation today was between {{ max_rank_correl.0 }} and {{ max_rank_correl.1 }}
+        <br>
+        (<a href="http://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">Spearman coefficient</a>: {{ max_rank_correl.2|floatformat:2 }})
+        <br> 
     </div>
-    <center>
-      <br>
-  </center>
+    <div class="image">
+      <p>
+        <img src="static/logo.png" width="486" height="315" align="absbottom"><br>
+      </p>
+    </div>
     <br>
     <br>
     <br>
     <br>
     <br>
-	  
-  </font>
-  <div align="right"><a href="http://www.flavors.me/fabiomdiniz">Sobre o autor</a></div>
+    <br>
+    <div align="right">
+        <a href="http://www.flavors.me/fabiomdiniz">About the author</a>
+    </div>
     <p>
-    <a href="http://www.python.org/">
-    <img align="right" src="http://www.python.org/community/logos/python-powered-w-100x40.png" alt="Python Powered" />     
-    </a></p>
+        <a href="http://www.python.org/">
+            <img align="right" src="http://www.python.org/community/logos/python-powered-w-100x40.png" alt="Python Powered" />     
+        </a>
+    </p>
     <br>
-    <p><br>
-    <a href="http://code.google.com/appengine/">
-    <img align="right"src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" />
-    </a></p>
+    <p>
+        <br>
+        <a href="http://code.google.com/appengine/">
+            <img align="right"src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" />
+        </a>
+    </p>
 
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-15624284-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
+    <script type="text/javascript">
+        var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+        document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        <script type="text/javascript">
+        try {
+        var pageTracker = _gat._getTracker("UA-15624284-1");
+        pageTracker._trackPageview();
+        } catch(err) {}
+    </script>
 
 </body>
 </html>

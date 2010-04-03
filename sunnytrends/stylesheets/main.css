@@ -6,9 +6,9 @@ body {
 }
 #apDiv1 {
 	position:absolute;
-	left:500px;
+	left:450px;
 	top:15px;
-	width:624px;
+	width:840px;
 	height:295px;
 	z-index:1;
 }
