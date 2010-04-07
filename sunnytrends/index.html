@@ -1,13 +1,157 @@
 <html>
 <head>
+
     <title> Sunny Trends </title>
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
     <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="./static/jquery-1.4.2.js"></script>
     <script type="text/javascript" src="./static/jquery.sparkline.js"></script>
+    <script type="text/javascript" src="./static/interface.js"></script>
+
 
     <script type="text/javascript">
+    $(document).ready(function(){
+        $("#TXT_FT").hide();
+        $("#TXT_PR").hide();
+        $("#TXT_WTF").hide();
+        $("#GMS").hide()
+    });
+    </script>
+
+    <script type="text/javascript">
+        $(function(){
+            $("#FTB")
+                .click(function(){
+                    if ($('#TXT_MS').is(':visible'))
+                    {
+                        $("#GMS").show()
+                        $('#TXT_MS').hide();
+                    }
+                    if ($('#TXT_PR').is(':visible'))
+                    {
+                        $("#GPR").show()
+                        $('#TXT_PR').hide();
+                    }
+                    if ($('#TXT_WTF').is(':visible'))
+                    {
+                        $("#GWTF").show()
+                        $('#TXT_WTF').hide();
+                    }
+                    $("#GFT").hide()
+                    $("#TXT_FT").show()
+                });
+        });
+        $(function(){
+            $("#MSB")
+                .click(function(){
+                    if ($('#TXT_FT').is(':visible'))
+                    {
+                        $("#GFT").show()
+                        $('#TXT_FT').hide();
+                    }
+                    if ($('#TXT_PR').is(':visible'))
+                    {
+                        $("#GPR").show()
+                        $('#TXT_PR').hide();
+                    }
+                    if ($('#TXT_WTF').is(':visible'))
+                    {
+                        $("#GWTF").show()
+                        $('#TXT_WTF').hide();
+                    }
+                    $("#GMS").hide()
+                    $("#TXT_MS").show()
+                });
+        });
+        $(function(){
+            $("#PRB")
+                .click(function(){
+                    if ($('#TXT_MS').is(':visible'))
+                    {
+                        $("#GMS").show()
+                        $('#TXT_MS').hide();
+                    }
+                    if ($('#TXT_FT').is(':visible'))
+                    {
+                        $("#GFT").show()
+                        $('#TXT_FT').hide();
+                    }
+                    if ($('#TXT_WTF').is(':visible'))
+                    {
+                        $("#GWTF").show()
+                        $('#TXT_WTF').hide();
+                    }
+                    $("#GPR").hide()
+                    $("#TXT_PR").show()
+                });
+        });
+        $(function(){
+            $("#WTFB")
+                .click(function(){
+                    if ($('#TXT_MS').is(':visible'))
+                    {
+                        $("#GMS").show()
+                        $('#TXT_MS').hide();
+                    }
+                    if ($('#TXT_PR').is(':visible'))
+                    {
+                        $("#GPR").show()
+                        $('#TXT_PR').hide();
+                    }
+                    if ($('#TXT_FT').is(':visible'))
+                    {
+                        $("#GFT").show()
+                        $('#TXT_FT').hide();
+                    }
+                    $("#GWTF").hide()
+                    $("#TXT_WTF").show()
+                });
+        });
+        $(function() {
+            $("#FTB").hover(function() {
+                $('#GFT').hide();
+            },function() {
+                if (!$('#TXT_FT').is(':visible'))
+                {
+                    $('#GFT').show();
+                }
+            });
+        });
+        $(function() {
+            $("#PRB").hover(function() {
+                $('#GPR').hide();
+            },function() {
+                if (!$('#TXT_PR').is(':visible'))
+                {
+                    $('#GPR').show();
+                }
+            });
+        }); 
+        $(function() {
+            $("#MSB").hover(function() {
+                $('#GMS').hide();
+            },function() {
+                if (!$('#TXT_MS').is(':visible'))
+                {
+                    $('#GMS').show();
+                }
+            });
+        }); 
+        $(function() {
+            $("#WTFB").hover(function() {
+                $('#GWTF').hide();
+            },function() {
+                if (!$('#TXT_WTF').is(':visible'))
+                {
+                    $('#GWTF').show();
+                }
+            });
+        });  
+    </script>
+
+    <script type="text/javascript">
+
     $(function() {
 	    var dow_jones = [{%for m_dow_jones in dow_jones_list reversed%}{% if forloop.last %}{{m_dow_jones.value}}{%else%}{{m_dow_jones.value}},{% endif %}{% endfor %}];
 		$('.main_graph').sparkline(dow_jones, {width:'20em', height: '5.3em', fillColor: false, lineColor: 'yellow'});
@@ -22,10 +166,33 @@
 		$('.main_graph').sparkline(max_sp, {composite: true, fillColor: false, lineColor: 'green'});		
 
     });
+    
     </script>
 </head>
 <body>
-    <div id="apDiv1" align="center">
+    <center>
+<img src="static/logo.png" width="486" height="315" align="absbottom"><br>
+    <div id="menu">
+            <div id="FTB"> 
+            <a href="#" id="FT"><img src="static/buttonFT.png" class="FT_but" /></a>
+            <a href="#" id="GFT"><img src="static/GbuttonFT.png" class="FT_but" /></a>
+			</div><br><br><br><br>
+			<div id="MSB"> 
+			<a href="#" id="MS"><img src="static/buttonMS.png" class="MS_but" /></a>
+			<a href="#" id="GMS"><img src="static/GbuttonMS.png" class="MS_but" /></a> 
+            </div><br><br><br><br>
+            <div id="PRB"> 
+			<a href="#" id="PR"><img src="static/buttonPR.png" class="PR_but" /></a> 
+            <a href="#" id="GPR"><img src="static/GbuttonPR.png" class="PR_but" /></a> 
+            </div><br><br><br><br>
+            <div id="WTFB">
+			<a href="#" id="WTF"><img src="static/buttonWTF.png" class="WTF_but" /></a>
+			<a href="#" id="GWTF"><img src="static/GbuttonWTF.png" class="WTF_but" /></a>
+			</div> 
+	</div>
+	<div id="TXT"> 
+        <div id="TXT_FT"> 
+        <br>
         <b>{{ date }}</b>
         <br>
         <br>
@@ -39,10 +206,15 @@
         <br>
         .......and São Paulo's high forecast: {{ max_sp }} °C
         <br>
+        The highest linear correlation today was between {{ max_linear_correl.0 }} and {{ max_linear_correl.1 }}
         <br>
+        (<a href="http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient">Pearson coefficient</a>: {{ max_linear_correl.2|floatformat:2 }})
         <br>
+        The highest ranked correlation today was between {{ max_rank_correl.0 }} and {{ max_rank_correl.1 }}
         <br>
-        Trends
+        (<a href="http://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">Spearman coefficient</a>: {{ max_rank_correl.2|floatformat:2 }})
+        </div>
+        <div id="TXT_MS">
         <br>
         <strong>
             (<font color="#ffff00">Dow Jones index</font>, 
@@ -52,46 +224,32 @@
         </strong>
         <br>
         <br>
-        <br>
         <span class="main_graph">Now Loading...</span> 
+        </div>
+        
+        <div id="TXT_PR">
         <br>
+        Oh non, tout est résume!
+        </div>
+        <div id="TXT_WTF">
         <br>
+        OMFG!
         <br>
-        The highest linear correlation today was between {{ max_linear_correl.0 }} and {{ max_linear_correl.1 }}
-        <br>
-        (<a href="http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient">Pearson coefficient</a>: {{ max_linear_correl.2|floatformat:2 }})
-        <br>
-        The highest ranked correlation today was between {{ max_rank_correl.0 }} and {{ max_rank_correl.1 }}
-        <br>
-        (<a href="http://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">Spearman coefficient</a>: {{ max_rank_correl.2|floatformat:2 }})
-        <br> 
-    </div>
-    <div class="image">
-      <p>
-        <img src="static/logo.png" width="486" height="315" align="absbottom"><br>
-      </p>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div align="right">
         <a href="http://www.flavors.me/fabiomdiniz">About the author</a>
-    </div>
-    <p>
-        <a href="http://www.python.org/">
-            <img align="right" src="http://www.python.org/community/logos/python-powered-w-100x40.png" alt="Python Powered" />     
-        </a>
-    </p>
-    <br>
-    <p>
         <br>
-        <a href="http://code.google.com/appengine/">
-            <img align="right"src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" />
-        </a>
-    </p>
+        <br>
+        <a href="http://code.google.com/appengine/"><img src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" /></a>
+        <br>
+        <br>
+        <br>
+        <a href="http://www.python.org/"><img src="http://www.python.org/community/logos/python-powered-w-100x40.png" alt="Python Powered" /></a>
+        </div>
+        <br>
+        <br>
+        <br>
+         </div>
+    </center>
+    
 
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

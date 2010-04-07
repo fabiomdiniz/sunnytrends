@@ -1,6 +1,7 @@
 body {
 	font-family: Verdana, Helvetica, sans-serif;
-	background-color: #FFFFFF;
+	color: #FFFFFF;
+	background-color: #000000;
 	background-image:url(../static/back.png);
 	background-repeat: repeat;
 }
@@ -12,3 +13,25 @@ body {
 	height:295px;
 	z-index:1;
 }
+#menu { position: absolute; }
+#about { position: absolute; }
+
+#FTB { position: relative; }
+#FTB img { position: absolute; }
+#FT { z-index: 100; }
+#GFT { z-index: 101; }
+
+#MSB { position: relative; }
+#MSB img { position: absolute; }
+#MS { z-index: 100; }
+#GMS { z-index: 101; }
+
+#PRB { position: relative; }
+#PRB img { position: absolute; }
+#PR { z-index: 100; }
+#GPR { z-index: 101; }
+
+#WTFB { position: relative; }
+#WTFB img { position: absolute; }
+#WTF { z-index: 100; }
+#GWTF { z-index: 101; }
