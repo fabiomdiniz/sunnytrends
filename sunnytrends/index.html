@@ -7,15 +7,135 @@
 
     <script type="text/javascript" src="./static/jquery-1.4.2.js"></script>
     <script type="text/javascript" src="./static/jquery.sparkline.js"></script>
-    <script type="text/javascript" src="./static/interface.js"></script>
+    <script type="text/javascript" src="./static/highcharts.js"></script>
+    <!--[if IE]>
+       <script type="text/javascript" src="./static/excanvas.compiled.js"></script>
+    <![endif]-->
 
 
     <script type="text/javascript">
+    var chart;
     $(document).ready(function(){
         $("#TXT_FT").hide();
         $("#TXT_PR").hide();
         $("#TXT_WTF").hide();
         $("#GMS").hide()
+        chart = new Highcharts.Chart({
+            chart: {
+                  renderTo: 'container',
+                  margin: [80, 60, 60, 60],
+                  zoomType: 'xy'
+               },
+               title: {
+                  text: 'Sunny Trends',
+                  style: {
+                     margin: '10px 0 0 0' // center it
+                  }
+               },
+               subtitle: {
+                  text: 'Sources: Weather.com, Yahoo! Finance',
+                  style: {
+                     margin: '0 0 0 0' // center it
+                  }
+               },
+               xAxis: [{
+                  categories: [{% for m_date in date_list reversed %}{% if forloop.last %}'{{m_date}}'{%else%}'{{m_date}}',{% endif %}{% endfor %}]
+               }],
+               yAxis: [
+               { // high yAxis
+					labels: {formatter: function() {return '';}},
+					title: {text: ''}
+			   },
+			   { // Dowjones yAxis
+					labels: {formatter: function() {return '';}},
+					title: {text: ''}
+			   },
+			   { // Bovespa yAxis
+					labels: {formatter: function() {return '';}},
+					title: {text: ''}
+			   },
+			   { // Nasdaq yAxis
+					labels: {formatter: function() {return '';}},
+					title: {text: ''}
+			   },
+			   { // Dollar yAxis
+					labels: {formatter: function() {return '';}},
+					title: {text: ''}
+			   },
+			   { // PETR4 yAxis
+					labels: {formatter: function() {return '';}},
+					title: {text: ''}
+			   }
+			],
+               tooltip: {
+                  formatter: function() {
+                     var unit = {
+                        'São Paulo\'s High Forecast': '°C',
+                        'Dow Jones': '',
+                        'Bovespa': '',
+                        'Nasdaq': '',
+                        'USD/BRL': '',
+                        'PETR4': 'Reais'
+                     }[this.series.name];
+                     
+                     return '<b>'+ this.series.name +'</b><br/>'+
+                        this.x +': '+ this.y +' '+ unit;
+                  }
+               },
+               legend: {
+                  layout: 'vertical',
+                  style: {
+                     left: '60px',
+                     bottom: 'auto',
+                     right: 'auto',
+                     top: '40px'
+                  },
+                  backgroundColor: '#FFFFFF'
+               },
+               series: [{
+                  name: 'São Paulo\'s High Forecast',
+                  color: '#4572A7',
+                  type: 'column',
+                  data: [{% for m_max_sp in max_sp_list reversed %}{% if forloop.last %}{{m_max_sp}}{%else%}{{m_max_sp}},{% endif %}{% endfor %}]      
+               
+               }, {
+                  name: 'Dow Jones',
+                  type: 'spline',
+                  color: '#AA4643',
+                  yAxis: 1,
+                  data: [{%for m_dow_jones in dow_jones_list reversed%}{% if forloop.last %}{{m_dow_jones}}{%else%}{{m_dow_jones}},{% endif %}{% endfor %}]
+               
+               }, {
+                  name: 'Bovespa',
+                  color: '#89A54E',
+                  type: 'spline',
+                  yAxis: 2,
+                  data: [{% for m_bovespa in bovespa_list reversed %}{% if forloop.last %}{{m_bovespa}}{%else%}{{m_bovespa}},{% endif %}{% endfor %}]
+               }, {
+                  name: 'Nasdaq',
+                  color: '#FCBA08',
+                  type: 'spline',
+                  yAxis: 3,
+                  data: [{% for m_nasdaq in nasdaq_list reversed %}{% if forloop.last %}{{m_nasdaq}}{%else%}{{m_nasdaq}},{% endif %}{% endfor %}]
+               }, {
+                  name: 'USD/BRL',
+                  color: '#BB07FC',
+                  type: 'spline',
+                  yAxis: 4,
+                  data: [{% for m_dollar in dollar_list reversed %}{% if forloop.last %}{{m_dollar}}{%else%}{{m_dollar}},{% endif %}{% endfor %}]
+               }, {
+                  name: 'PETR4',
+                  color: '#4A473A',
+                  type: 'spline',
+                  yAxis: 5,
+                  data: [{% for m_petr4 in petr4_list reversed %}{% if forloop.last %}{{m_petr4}}{%else%}{{m_petr4}},{% endif %}{% endfor %}]
+               }]
+            });
+
+
+
+
+        
     });
     </script>
 
@@ -153,16 +273,16 @@
     <script type="text/javascript">
 
     $(function() {
-	    var dow_jones = [{%for m_dow_jones in dow_jones_list reversed%}{% if forloop.last %}{{m_dow_jones.value}}{%else%}{{m_dow_jones.value}},{% endif %}{% endfor %}];
+	    var dow_jones = [{%for m_dow_jones in dow_jones_list reversed%}{% if forloop.last %}{{m_dow_jones}}{%else%}{{m_dow_jones}},{% endif %}{% endfor %}];
 		$('.main_graph').sparkline(dow_jones, {width:'20em', height: '5.3em', fillColor: false, lineColor: 'yellow'});
 		
-        var bovespa = [{% for m_bovespa in bovespa_list reversed %}{% if forloop.last %}{{m_bovespa.value}}{%else%}{{m_bovespa.value}},{% endif %}{% endfor %}];
+        var bovespa = [{% for m_bovespa in bovespa_list reversed %}{% if forloop.last %}{{m_bovespa}}{%else%}{{m_bovespa}},{% endif %}{% endfor %}];
 		$('.main_graph').sparkline(bovespa, {composite: true, fillColor: false, lineColor: 'red'});
 
-        var dollar = [{% for m_dollar in dollar_list reversed %}{% if forloop.last %}{{m_dollar.value}}{%else%}{{m_dollar.value}},{% endif %}{% endfor %}];
+        var dollar = [{% for m_dollar in dollar_list reversed %}{% if forloop.last %}{{m_dollar}}{%else%}{{m_dollar}},{% endif %}{% endfor %}];
 		$('.main_graph').sparkline(dollar, {composite: true, fillColor: false, lineColor: 'blue'});
 		
-        var max_sp = [{% for m_max_sp in max_sp_list reversed %}{% if forloop.last %}{{m_max_sp.value}}{%else%}{{m_max_sp.value}},{% endif %}{% endfor %}];
+        var max_sp = [{% for m_max_sp in max_sp_list reversed %}{% if forloop.last %}{{m_max_sp}}{%else%}{{m_max_sp}},{% endif %}{% endfor %}];
 		$('.main_graph').sparkline(max_sp, {composite: true, fillColor: false, lineColor: 'green'});		
 
     });
@@ -216,15 +336,12 @@
         </div>
         <div id="TXT_MS">
         <br>
-        <strong>
-            (<font color="#ffff00">Dow Jones index</font>, 
-             <font color="#ff0000">Bovespa index</font>, 
-             <font color="#0000ff">Dollar index</font>, 
-             <font color="#006600">São Paulo's high forecast</font>) 
-        </strong>
         <br>
         <br>
-        <span class="main_graph">Now Loading...</span> 
+        <div id="container" align="center" style="width: 800px; height: 400px"></div>
+        <br>
+        <br>
+        
         </div>
         
         <div id="TXT_PR">
@@ -238,11 +355,11 @@
         <a href="http://www.flavors.me/fabiomdiniz">About the author</a>
         <br>
         <br>
-        <a href="http://code.google.com/appengine/"><img src="http://code.google.com/appengine/images/appengine-noborder-120x30.gif" alt="Powered by Google App Engine" /></a>
+        <a href="http://code.google.com/appengine/"><img src="static/appengine.gif" alt="Powered by Google App Engine" /></a>
         <br>
         <br>
         <br>
-        <a href="http://www.python.org/"><img src="http://www.python.org/community/logos/python-powered-w-100x40.png" alt="Python Powered" /></a>
+        <a href="http://www.python.org/"><img src="static/python.png" alt="Python Powered" /></a>
         </div>
         <br>
         <br>
