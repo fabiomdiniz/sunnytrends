@@ -5,6 +5,25 @@ body {
 	background-image:url(../static/back.png);
 	background-repeat: repeat;
 }
+
+a:link {
+color:#FF0000;
+text-decoration:none;
+}
+a:visited {
+color:#999999;
+text-decoration:none;
+}
+a:hover {
+color:#FFFFFF;
+text-decoration:underline;
+}
+a:active {
+color:#00FF00;
+text-decoration:underline;
+background-color:#000000;
+}
+
 #apDiv1 {
 	position:absolute;
 	left:450px;

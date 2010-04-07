@@ -6,7 +6,6 @@
     <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="./static/jquery-1.4.2.js"></script>
-    <script type="text/javascript" src="./static/jquery.sparkline.js"></script>
     <script type="text/javascript" src="./static/highcharts.js"></script>
     <!--[if IE]>
        <script type="text/javascript" src="./static/excanvas.compiled.js"></script>
@@ -270,28 +269,10 @@
         });  
     </script>
 
-    <script type="text/javascript">
-
-    $(function() {
-	    var dow_jones = [{%for m_dow_jones in dow_jones_list reversed%}{% if forloop.last %}{{m_dow_jones}}{%else%}{{m_dow_jones}},{% endif %}{% endfor %}];
-		$('.main_graph').sparkline(dow_jones, {width:'20em', height: '5.3em', fillColor: false, lineColor: 'yellow'});
-		
-        var bovespa = [{% for m_bovespa in bovespa_list reversed %}{% if forloop.last %}{{m_bovespa}}{%else%}{{m_bovespa}},{% endif %}{% endfor %}];
-		$('.main_graph').sparkline(bovespa, {composite: true, fillColor: false, lineColor: 'red'});
-
-        var dollar = [{% for m_dollar in dollar_list reversed %}{% if forloop.last %}{{m_dollar}}{%else%}{{m_dollar}},{% endif %}{% endfor %}];
-		$('.main_graph').sparkline(dollar, {composite: true, fillColor: false, lineColor: 'blue'});
-		
-        var max_sp = [{% for m_max_sp in max_sp_list reversed %}{% if forloop.last %}{{m_max_sp}}{%else%}{{m_max_sp}},{% endif %}{% endfor %}];
-		$('.main_graph').sparkline(max_sp, {composite: true, fillColor: false, lineColor: 'green'});		
-
-    });
-    
-    </script>
 </head>
 <body>
     <center>
-<img src="static/logo.png" width="486" height="315" align="absbottom"><br>
+<img src="static/logo.jpg" width="486" height="315" align="absbottom"><br>
     <div id="menu">
             <div id="FTB"> 
             <a href="#" id="FT"><img src="static/buttonFT.png" class="FT_but" /></a>
@@ -326,13 +307,13 @@
         <br>
         .......and São Paulo's high forecast: {{ max_sp }} °C
         <br>
-        The highest linear correlation today was between {{ max_linear_correl.0 }} and {{ max_linear_correl.1 }}
+        The highest linear sunny correlation today was between São Paulo's High Forecast and {{ max_linear_correl.0 }}
         <br>
-        (<a href="http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient">Pearson coefficient</a>: {{ max_linear_correl.2|floatformat:2 }})
+        (<a href="http://en.wikipedia.org/wiki/Pearson_product-moment_correlation_coefficient">Pearson coefficient</a>: {{ max_linear_correl.1|floatformat:2 }})
         <br>
-        The highest ranked correlation today was between {{ max_rank_correl.0 }} and {{ max_rank_correl.1 }}
+        The highest ranked sunny correlation today was between São Paulo's High Forecast and {{ max_rank_correl.0 }}
         <br>
-        (<a href="http://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">Spearman coefficient</a>: {{ max_rank_correl.2|floatformat:2 }})
+        (<a href="http://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">Spearman coefficient</a>: {{ max_rank_correl.1|floatformat:2 }})
         </div>
         <div id="TXT_MS">
         <br>
