@@ -2,7 +2,6 @@
 <head>
 
     <title> Sunny Trends </title>
-    <link type="text/css" rel="stylesheet" href="/stylesheets/main.css" />
     <link href="stylesheets/main.css" rel="stylesheet" type="text/css">
 
     <script type="text/javascript" src="./static/jquery-1.4.2.js"></script>
@@ -271,27 +270,28 @@
 
 </head>
 <body>
-    <center>
-<img src="static/logo.jpg" width="486" height="315" align="absbottom"><br>
-    <div id="menu">
-            <div id="FTB"> 
-            <a href="#" id="FT"><img src="static/buttonFT.png" class="FT_but" /></a>
-            <a href="#" id="GFT"><img src="static/GbuttonFT.png" class="FT_but" /></a>
-			</div><br><br><br><br>
-			<div id="MSB"> 
-			<a href="#" id="MS"><img src="static/buttonMS.png" class="MS_but" /></a>
-			<a href="#" id="GMS"><img src="static/GbuttonMS.png" class="MS_but" /></a> 
-            </div><br><br><br><br>
-            <div id="PRB"> 
-			<a href="#" id="PR"><img src="static/buttonPR.png" class="PR_but" /></a> 
-            <a href="#" id="GPR"><img src="static/GbuttonPR.png" class="PR_but" /></a> 
-            </div><br><br><br><br>
-            <div id="WTFB">
-			<a href="#" id="WTF"><img src="static/buttonWTF.png" class="WTF_but" /></a>
-			<a href="#" id="GWTF"><img src="static/GbuttonWTF.png" class="WTF_but" /></a>
-			</div> 
+    <div id="header" align="center">
+        <img src="static/logo.jpg" width="486" height="315" align="center"><br>
+    </div>
+    <div id="menu" align="left"> 
+            <div id="FTB" style="top: 0px"> 
+            <div id="FT"><img src="static/buttonFT.png" class="FT_but" /></div>
+            <div id="GFT"><img src="static/GbuttonFT.png" class="FT_but" /></div>
+            </div>
+            <div id="MSB" style="top: 70px"> 
+			<div id="MS"><img src="static/buttonMS.png" class="MS_but" /></div>
+			<div id="GMS"><img src="static/GbuttonMS.png" class="MS_but" /></div> 
+            </div>
+            <div id="PRB" style="top: 140px"> 
+			<div id="PR"><img src="static/buttonPR.png" class="PR_but" /></div> 
+            <div id="GPR"><img src="static/GbuttonPR.png" class="PR_but" /></div> 
+            </div>
+            <div id="WTFB" style="top: 210px"> 
+			<div id="WTF"><img src="static/buttonWTF.png" class="WTF_but" /></div>
+			<div id="GWTF"><img src="static/GbuttonWTF.png" class="WTF_but" /></div>
+			</div>
 	</div>
-	<div id="TXT"> 
+	<div id="TXT" align="center"> 
         <div id="TXT_FT"> 
         <br>
         <b>{{ date }}</b>
@@ -316,13 +316,7 @@
         (<a href="http://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">Spearman coefficient</a>: {{ max_rank_correl.1|floatformat:2 }})
         </div>
         <div id="TXT_MS">
-        <br>
-        <br>
-        <br>
-        <div id="container" align="center" style="width: 800px; height: 400px"></div>
-        <br>
-        <br>
-        
+        <div id="container" align="center"></div>
         </div>
         
         <div id="TXT_PR">
@@ -346,7 +340,6 @@
         <br>
         <br>
          </div>
-    </center>
     
 
     <script type="text/javascript">
