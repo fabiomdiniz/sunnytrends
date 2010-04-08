@@ -9,7 +9,7 @@
     <!--[if IE]>
        <script type="text/javascript" src="./static/excanvas.compiled.js"></script>
     <![endif]-->
-
+    <script type="text/javascript" src="./static/jquery.newwin.1.1.js"></script>
 
     <script type="text/javascript">
     var chart;
@@ -17,7 +17,8 @@
         $("#TXT_FT").hide();
         $("#TXT_PR").hide();
         $("#TXT_WTF").hide();
-        $("#GMS").hide()
+        $("#GMS").hide();
+        $('#TXT a').newWin();
         chart = new Highcharts.Chart({
             chart: {
                   renderTo: 'container',
@@ -270,6 +271,7 @@
 
 </head>
 <body>
+<!--[if lte IE 6]><script src="static/warning.js"></script><script>window.onload=function(){e("static/")}</script><![endif]-->
     <div id="header" align="center">
         <img src="static/logo.jpg" width="486" height="315" align="center"><br>
     </div>
@@ -336,11 +338,9 @@
         <br>
         <a href="http://www.python.org/"><img src="static/python.png" alt="Python Powered" /></a>
         </div>
-        <br>
-        <br>
-        <br>
-         </div>
-    
+    </div>
+    <div id="rightcol" align="right">
+    </div> 
 
     <script type="text/javascript">
         var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
