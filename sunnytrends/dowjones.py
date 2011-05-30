@@ -3,14 +3,12 @@
 from google.appengine.ext import db
 from time import strftime
 import urllib
-from deps.BeautifulSoup import BeautifulSoup
+from deps import ystockquote
 
 class Dowjones(db.Model):
   value = db.FloatProperty()
   date = db.StringProperty()
 
 def get():
-    html = urllib.urlopen('http://br.finance.yahoo.com/q?s=^DJI')
-    soup = BeautifulSoup(html)
-    return [float(soup.big.b.string.replace(',', '')), strftime('%Y%m%d')]
+    return [float(ystockquote.get_price('INDU')), strftime('%Y%m%d')]
 
