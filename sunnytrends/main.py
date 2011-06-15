@@ -3,6 +3,7 @@
 import cgi
 import os
 from time import strftime
+import time
 import datetime
 
 from google.appengine.api import users
@@ -109,9 +110,28 @@ class Cron(webapp.RequestHandler):
         self.response.out.write(template.render(path, template_values))        
     
 
+class bulkdelete(webapp.RequestHandler):
+    def get(self):
+        self.response.headers['Content-Type'] = 'text/plain'
+        try:
+            while True:
+              nothing = True
+              for key in ['Bovespa', 'Dollar', 'Dowjones', 'Max_sp', 'Nasdaq', 'Petr4']:
+                q = db.GqlQuery('SELECT __key__ FROM ' + key)
+                if q.count():
+                  nothing = False
+                  db.delete(q.fetch(200))
+                  time.sleep(0.5)
+              if nothing:
+                assert 0
+        except Exception, e:
+            self.response.out.write(repr(e)+'\n')
+            pass
+
 application = webapp.WSGIApplication(
                                      [('/', MainPage),
-                                      ('/cron/update', Cron)],
+                                      ('/cron/update', Cron),
+                                      ('/clean', bulkdelete)],
                                      debug=True)
 
 def main():
