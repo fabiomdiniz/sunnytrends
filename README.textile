@@ -1,6 +1,8 @@
+h1. Sunnytrends
+
 Aplicativo de cálculo de correlações inesperadas.
 
-h1. Correlações atuais:
+h2. Correlações atuais:
 
 * Máxima de SP X NASDAQ
 * Máxima de SP X DOW JONES
