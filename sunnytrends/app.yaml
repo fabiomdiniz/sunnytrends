@@ -1,4 +1,4 @@
-application: sunnytrends
+application: sunnytrends-hrd
 version: 3
 runtime: python27
 api_version: 1
